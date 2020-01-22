@@ -1,4 +1,4 @@
-# Import products
+# Products
 
 ## Example 1
 
@@ -47,6 +47,133 @@ try {
 
 print_r($importerModel->getLogTrace());
 print_r($importerModel->getErrorMessages());
+```
+
+## Example 3 (multiselect)
+
+```php
+ $data = [];
+        for ($i = 1; $i <= 1; $i++) {
+            $data[] = array(
+                'sku' => 'FIREGENTO-' . $i,
+                'attribute_set_code' => 'Default',
+                'product_type' => 'simple',
+                'product_websites' => 'base',
+                'name' => 'FireGento Test Product ' . $i,
+                'price' => '14.0000',
+                'ean' => "1234",
+                'multiselect' => 'Test|Test3'
+            );
+        }
+        return $data;
+```
+
+## Example 4 (configurable)
+
+```php
+$products = [];
+        $products [] = array(
+            'sku' => "SIMPLE-BLUE-SMALL",
+            'attribute_set_code' => 'Default',
+            'product_type' => 'simple',
+            'product_websites' => 'base',
+            'name' => 'FireGento Simple Product Blue,Size Small',
+            'price' => '1.0000',
+            'color' => 'blue',
+            'size' => 'S'
+        );
+        $products [] = array(
+            'sku' => "SIMPLE-RED-MIDDLE",
+            'attribute_set_code' => 'Default',
+            'product_type' => 'simple',
+            'product_websites' => 'base',
+            'name' => 'FireGento Simple Product Red,Size Middle',
+            'price' => '1.0000',
+            'color' => 'red',
+            'size' => 'M'
+        );
+
+        $products [] = array(
+            'sku' => 'CONFIG-Product',
+            'attribute_set_code' => 'Default',
+            'product_type' => 'configurable',
+            'product_websites' => 'base',
+            'name' => 'FireGento Test Product Configurable',
+            'price' => '10.000',
+            'configurable_variation_labels' => 'Color',
+            'configurable_variations' => array(
+                array(
+                    'sku' => 'SIMPLE-BLUE-SMALL',
+                    'color' => 'blue',
+                    'size' => 'S'),
+                array(
+                    'sku' => 'SIMPLE-RED-MIDDLE',
+                    'color' => 'red',
+                    'size' => 'M'),
+            )
+
+        );
+```
+
+## Example 5 (bundle)
+
+```php
+$simpleProducts = [];
+        $bundleProduct = array(
+            'sku' => 'Bundle-Product',
+            'attribute_set_code' => 'Default',
+            'product_type' => 'bundle',
+            'product_websites' => 'base',
+            'name' => 'FireGento Test Product Bundle',
+            'price' => '10.000',
+
+            'bundle_price_type' => 'dynamic',
+            'bundle_sku_type' => 'dynamic',
+            'bundle_price_view' => 'Price range',
+            'bundle_weight_type' => 'dynamic',
+
+
+        );
+
+        $colors = array("blue", "black");
+        $bundleValues = '';
+        for ($i = 0; $i < 2; $i++) {
+
+            $color = $colors[$i];
+            $sku = 'SIMPLE-' . $color;
+            $simpleProducts[] = array(
+                'sku' => $sku,
+                'attribute_set_code' => 'Default',
+                'product_type' => 'simple',
+                'product_websites' => 'base',
+                'name' => 'FireGento Test Product Simple - ' . $color,
+                'price' => '14.0000',
+                'additional_attributes' => "color=" . $color
+
+            );
+            $bundleAttributes = array(
+                "name" => "Color",
+                "type" => 'radio',
+                'required' => '1',
+                'sku' => $sku,
+                'price' => '14.0000',
+                'default' => $i,
+                'default_qty' => '1.0000',
+                'price_type' => 'fixed'
+            );
+
+
+            $bundleValues .= $this->arrayToAttributeString($bundleAttributes) . "|";
+
+        }
+        $bundleProduct["bundle_values"] = $bundleValues;
+        print_r($bundleProduct);
+
+
+        $data = array_merge($simpleProducts, array($bundleProduct));
+
+
+        return $data;
 ```
 
 ## Fields
