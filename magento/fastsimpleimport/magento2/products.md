@@ -176,6 +176,13 @@ $simpleProducts = [];
         return $data;
 ```
 
+## More examples
+- [product_all_types](https://github.com/firebearstudio/magento2-import-export-sample-files/blob/master/Improved%20Import%20:%20Export%20-%20Sample%20Files/product_all_types.csv)
+- [products_bundle](https://github.com/firebearstudio/magento2-import-export-sample-files/blob/master/Improved%20Import%20:%20Export%20-%20Sample%20Files/products_bundle.csv)
+- [products_configurable_native](https://github.com/firebearstudio/magento2-import-export-sample-files/blob/master/Improved%20Import%20:%20Export%20-%20Sample%20Files/products_configurable_native.csv)
+- [products_multiple_store_view](https://github.com/firebearstudio/magento2-import-export-sample-files/blob/master/Improved%20Import%20:%20Export%20-%20Sample%20Files/products_multiple_store_view.csv)
+- [products_swatches_import](https://github.com/firebearstudio/magento2-import-export-sample-files/blob/master/Improved%20Import%20:%20Export%20-%20Sample%20Files/products_swatches_import.csv)
+
 ## Fields
 
 | Field |
